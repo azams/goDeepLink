@@ -46,6 +46,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	//fmt.Println("Unzipped:\n" + strings.Join(files, "\n"))
 
 	files, err := ioutil.ReadDir("./" + outputfolder + "/Payload/")
 	if err != nil {
@@ -69,7 +70,7 @@ func main() {
 		fmt.Println("Binary file founded: " + realpath + appname)
 	}
 
-	result := findStrings(realpath+appname, `([a-zA-Z0-9\-]+):\/\/([a-zA-Z0-9\/\?\.=\-\#]+)`)
+	result := findStrings(realpath+appname, `([a-zA-Z0-9\-_]+):\/\/([a-zA-Z0-9\/\?\.=_\-\#]+)`)
 	if len(result) > 0 {
 		for _, x := range result {
 			fmt.Println(x)
