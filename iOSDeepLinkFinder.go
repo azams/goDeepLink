@@ -70,7 +70,7 @@ func main() {
 		fmt.Println("Binary file founded: " + realpath + appname)
 	}
 
-	result := findStrings(realpath+appname, appname+`:\/\/([a-zA-Z0-9\/\?\.=\-\#]+)`)
+	result := findStrings(realpath+appname, `([a-zA-Z0-9\-]+):\/\/([a-zA-Z0-9\/\?\.=\-\#]+)`)
 	if len(result) > 0 {
 		for _, x := range result {
 			fmt.Println(x)
