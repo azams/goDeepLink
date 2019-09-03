@@ -46,7 +46,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//fmt.Println("Unzipped:\n" + strings.Join(files, "\n"))
 
 	files, err := ioutil.ReadDir("./" + outputfolder + "/Payload/")
 	if err != nil {
