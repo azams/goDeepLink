@@ -70,13 +70,22 @@ func main() {
 		fmt.Println("Binary file founded: " + realpath + appname)
 	}
 
-	result := findStrings(realpath+appname, `([a-zA-Z0-9\-_]+):\/\/([a-zA-Z0-9\/\?\.=_\-\#]+)`)
+	result := removeDuplicates(findStrings(realpath+appname, `([a-zA-Z0-9\-_]+):\/\/([a-zA-Z0-9\/\?\.=_\-\#]+)`))
 	if len(result) > 0 {
 		for _, x := range result {
 			fmt.Println(x)
 		}
 	} else {
 		fmt.Println("Result: Cannot find any deeplinks hardcoded in the app.")
+	}
+
+	result = removeDuplicates(findStrings(realpath+appname, `([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})`))
+	if len(result) > 0 {
+		for _, x := range result {
+			fmt.Println(x)
+		}
+	} else {
+		fmt.Println("Result: Cannot find any IP Address hardcoded in the app.")
 	}
 }
 
@@ -166,4 +175,16 @@ func Unzip(src string, dest string) ([]string, error) {
 		}
 	}
 	return filenames, nil
+}
+
+func removeDuplicates(elements []string) []string {
+	encountered := map[string]bool{}
+	result := []string{}
+	for v := range elements {
+		if encountered[elements[v]] != true {
+			encountered[elements[v]] = true
+			result = append(result, elements[v])
+		}
+	}
+	return result
 }
