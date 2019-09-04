@@ -70,7 +70,8 @@ func main() {
 		fmt.Println("Binary file founded: " + realpath + appname)
 	}
 
-	result := removeDuplicates(findStrings(realpath+appname, `([a-zA-Z0-9\-_]+):\/\/([a-zA-Z0-9\/\?\.=_\-\#]+)`))
+	//Find hardcoded links
+	result := removeDuplicates(findStrings(realpath+appname, `([a-zA-Z0-9\-_]+):\/\/([a-zA-Z0-9\/\?\.=_\-\#%]+)`))
 	if len(result) > 0 {
 		for _, x := range result {
 			fmt.Println(x)
@@ -79,10 +80,28 @@ func main() {
 		fmt.Println("Result: Cannot find any deeplinks hardcoded in the app.")
 	}
 
+	//Find hardcoded ip address
 	result = removeDuplicates(findStrings(realpath+appname, `([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})`))
 	if len(result) > 0 {
 		for _, x := range result {
-			fmt.Println(x)
+			valid := false
+			ips := strings.Split(x, ".")
+			for i, o := range ips {
+				if i == 0 && len(o) == 1 {
+					valid = false
+					break
+				} else {
+					if string(o[0]) != "0" {
+						valid = true
+					} else {
+						valid = false
+						break
+					}
+				}
+			}
+			if valid {
+				fmt.Println(x)
+			}
 		}
 	} else {
 		fmt.Println("Result: Cannot find any IP Address hardcoded in the app.")
