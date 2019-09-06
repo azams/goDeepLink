@@ -2,9 +2,9 @@
 This simple tool can help finding deep links in the IPA Binary file.
 
 # Installation
-Install Golang: https://golang.org/doc/install
-Run without compile: go run main.go
-Compile source: go build main.go -o iOSDeepLinkFinder
+* Install Golang: https://golang.org/doc/install
+* Run without compile: go run main.go
+* Compile source: go build main.go -o iOSDeepLinkFinder
 
 # Usage:
 iOSDeepLinkFinder
