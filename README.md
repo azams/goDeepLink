@@ -1,5 +1,5 @@
 # goDeepLink
-This simple tool can help finding deep links in the IPA Binary file.
+This simple tool can help finding endpoints within IPA Binary file.
 
 # Installation
 * Install Golang: https://golang.org/doc/install
