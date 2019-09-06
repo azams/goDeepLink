@@ -91,11 +91,11 @@ func main() {
 					valid = false
 					break
 				} else {
-					if string(o[0]) != "0" {
-						valid = true
-					} else {
+					if string(o[0]) == "0" && len(o) > 1 {
 						valid = false
 						break
+					} else {
+						valid = true
 					}
 				}
 			}
